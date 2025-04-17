@@ -1,3 +1,4 @@
+/* Zajednički stilovi za sve stranice */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -112,4 +113,100 @@ button:hover {
     background: #f4f4f4;
     text-align: center;
     padding: 1rem 0;
+}
+
+/* Styling za index.html (Početna stranica) */
+.index-page .hero {
+    background-color: rgba(0, 0, 0, 0.5); /* Dodaj tamnu pozadinu za hero sekciju */
+}
+
+.index-page .hero-content h1 {
+    font-size: 3rem;
+    color: #c48d1d; /* Naglašena boja za h1 */
+}
+
+.index-page .hero-content p {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+
+.index-page button {
+    margin-top: 1.5rem;
+}
+
+/* Styling za rezervacija.html (Stranica za rezervaciju) */
+.rezervacija-page .reservation-form {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    margin: 2rem auto;
+}
+
+.rezervacija-page .reservation-form h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.rezervacija-page .reservation-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #444;
+}
+
+.rezervacija-page .reservation-form input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.rezervacija-page .reservation-form button {
+    width: 100%;
+    padding: 0.75rem;
+    background: #c48d1d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.rezervacija-page .reservation-form button:hover {
+    background: #a17316;
+}
+
+/* Styling za o-nama.html (O nama) */
+.o-nama-page .section {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.o-nama-page .section h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.o-nama-page .section p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #555;
+}
+
+.o-nama-page .section .gallery {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.o-nama-page .section .gallery img {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
