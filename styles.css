@@ -134,14 +134,14 @@ button:hover {
     margin-top: 1.5rem;
 }
 
-/* Styling za rezervacija.html (Stranica za rezervaciju) */
+/* Stilizovanje za rezervacija.html (Stranica za rezervaciju) */
 .rezervacija-page .reservation-form {
     background: rgba(255, 255, 255, 0.9);
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;  /* Povećana širina */
     margin: 2rem auto;
 }
 
@@ -157,12 +157,19 @@ button:hover {
     color: #444;
 }
 
-.rezervacija-page .reservation-form input {
+.rezervacija-page .reservation-form input,
+.rezervacija-page .reservation-form select,
+.rezervacija-page .reservation-form textarea {
     width: 100%;
     padding: 0.75rem;
     margin-bottom: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.rezervacija-page .reservation-form input[type="date"] {
+    cursor: pointer;
 }
 
 .rezervacija-page .reservation-form button {
@@ -179,6 +186,7 @@ button:hover {
 .rezervacija-page .reservation-form button:hover {
     background: #a17316;
 }
+
 
 /* Styling za o-nama.html (O nama) */
 .o-nama-page .section {
