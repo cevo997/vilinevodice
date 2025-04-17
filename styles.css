@@ -5,8 +5,14 @@ body {
     padding: 0;
     line-height: 1.6;
     color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
 }
 
+/* Stilizacija za header */
 .site-header {
     background: rgba(255, 255, 255, 0.95);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -14,13 +20,14 @@ body {
     width: 100%;
     top: 0;
     z-index: 1000;
+    padding: 1rem 0;
 }
 
 .site-header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem 2rem;
+    padding: 0 2rem;
 }
 
 .logo img {
@@ -46,135 +53,53 @@ body {
     color: #0066cc;
 }
 
-/* Hero sekcija sa video pozadinom */
-.hero {
-    position: relative;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Rezervacija sekcija */
+.rezervacija-page .section {
     text-align: center;
-    overflow: hidden;
+    padding: 4rem 2rem;
+    max-width: 600px;
+    margin: auto;
 }
 
-.video-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: 1;
-}
-
-.video-background iframe {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 177.77vh; /* 16:9 aspect ratio */
-    height: 100vh;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-    color: white;
-}
-
-.hero-content h1 {
+.rezervacija-page .section h1 {
     font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-    color: #c48d1d;
-}
-
-.hero-content p {
-    font-size: 1.2rem;
     margin-bottom: 1rem;
 }
 
-button {
-    background: #c48d1d;
-    color: white;
-    padding: 0.75rem 1.5rem;
-    text-decoration: none;
-    border: none;
-    border-radius: 5px;
-    transition: background 0.3s ease;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #004999;
-}
-
-.footer {
-    background: #f4f4f4;
-    text-align: center;
-    padding: 1rem 0;
-}
-
-/* Styling za index.html (Početna stranica) */
-.index-page .hero {
-    background-color: rgba(0, 0, 0, 0.5); /* Dodaj tamnu pozadinu za hero sekciju */
-}
-
-.index-page .hero-content h1 {
-    font-size: 3rem;
-    color: #c48d1d; /* Naglašena boja za h1 */
-}
-
-.index-page .hero-content p {
+.rezervacija-page .section p {
     font-size: 1.2rem;
-    margin-top: 1rem;
+    margin-bottom: 2rem;
 }
 
-.index-page button {
-    margin-top: 1.5rem;
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Stilizovanje za rezervacija.html (Stranica za rezervaciju) */
 .rezervacija-page .reservation-form {
     background: rgba(255, 255, 255, 0.9);
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     width: 100%;
-    max-width: 500px;  /* Povećana širina */
-    margin: 2rem auto;
-}
-
-.rezervacija-page .reservation-form h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    color: #333;
-}
-
-.rezervacija-page .reservation-form label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #444;
+    max-width: 500px;
 }
 
 .rezervacija-page .reservation-form input,
 .rezervacija-page .reservation-form select,
 .rezervacija-page .reservation-form textarea {
     width: 100%;
-    padding: 0.75rem;
+    padding: 1rem;
     margin-bottom: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
 }
 
-.rezervacija-page .reservation-form input[type="date"] {
-    cursor: pointer;
-}
-
 .rezervacija-page .reservation-form button {
     width: 100%;
-    padding: 0.75rem;
+    padding: 1rem;
     background: #c48d1d;
     color: white;
     border: none;
@@ -185,36 +110,4 @@ button:hover {
 
 .rezervacija-page .reservation-form button:hover {
     background: #a17316;
-}
-
-
-/* Styling za o-nama.html (O nama) */
-.o-nama-page .section {
-    padding: 4rem 2rem;
-    text-align: center;
-}
-
-.o-nama-page .section h2 {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 1rem;
-}
-
-.o-nama-page .section p {
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
-    color: #555;
-}
-
-.o-nama-page .section .gallery {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.o-nama-page .section .gallery img {
-    max-width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
