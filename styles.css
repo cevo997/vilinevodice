@@ -7,6 +7,32 @@ body {
     color: #333;
 }
 
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('images/pozadina.jpg') no-repeat center center/cover;
+    z-index: 1;
+    opacity: 0.8; /* možeš prilagoditi providnost slike */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+}
+
 header.hero {
     background: url('hero-image.jpg') no-repeat center center/cover;
     height: 100vh;
