@@ -15,10 +15,9 @@
             <a href="index.html" class="logo">
                 <img src="images/logo.png" alt="Kozi A-Frame">
             </a>
-              <button class="menu-toggle" aria-label="Menu">&#9776;</button> <!-- Tri crtice -->
-
-            <nav class="site-nav">
-                <ul>
+                 <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <nav class="site-nav" id="mainMenu">
+             <ul>
                     <li><a href="rezervacija.html">Rezerviši</a></li>
                     <li><a href="galerija.html">Galerija</a></li>
                     <li><a href="o-nama.html">O nama</a></li>
@@ -55,6 +54,11 @@
     menuToggle.addEventListener('click', () => {
         siteNav.classList.toggle('active');
     });
+</script>
+<script>
+function toggleMenu() {
+    document.getElementById('mainMenu').classList.toggle('active');
+}
 </script>
 
 </body>
