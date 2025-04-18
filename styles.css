@@ -402,4 +402,34 @@ button:hover {
     .about-page .section p {
         font-size: 1rem;
     }
+    /* Stilizovanje iframe-a kao pozadine */
+.background-iframe {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    z-index: -1; /* Stavite iframe iza sadržaja stranice */
+    object-fit: cover; /* Iframe se prilagođava veličini ekrana */
+}
+
+/* Različite pozadine za svaku stranicu */
+.rezervacija-background {
+    background: url('images/image1.png') no-repeat center center;
+}
+
+.contact-background {
+    background: url('images/image2.png') no-repeat center center;
+}
+
+/* Ako želite različite stilove za iframe u zavisnosti od stranice */
+.index-background {
+    filter: blur(3px); /* Na primer, primenjujemo efekat zamućenja na index strani */
+}
+
+.rezervacija-background {
+    filter: brightness(0.7); /* Na stranici rezervacija, pozadina bi mogla biti tamnija */
+}
+
 }
