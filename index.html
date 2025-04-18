@@ -3,6 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kozi A-frame Vikendica</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="index-page">
+
+<header class="site-header">
+    <div class="container">
+        <div class="logo">
+            <a href="index.html"><img src="logo.png" alt="Kozi A-frame" /></a>
+        </div>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <nav class="site-nav" id="mainMenu">
+            <ul>
+                <li><a href="index.html">Početna</a></li>
+                <li><a href="rezervacija.html">Rezervacija</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+                <li><a href="onama.html">O nama</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="video-background">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID?autoplay=1&mute=1&loop=1&playlist=VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="hero-content">
+        <h1>Dobrodošli u Kozi A-frame</h1>
+        <p>Vaša savršena vikend destinacija za odmor u prirodi.</p>
+        <a href="rezervacija.html"><button>Rezerviši sada</button></a>
+    </div>
+</section>
+
+<footer class="footer">
+    <p>&copy; 2025 Kozi A-frame. Sva prava zadržana.</p>
+</footer>
+
+<script>
+function toggleMenu() {
+    document.getElementById('mainMenu').classList.toggle('active');
+}
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>A-fgrame Viline vodice</title>
     <link rel="stylesheet" href="styles.css">
