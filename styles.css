@@ -155,3 +155,54 @@ a {
         padding: 0.8rem;
     }
 }
+/* Hero sekcija sa video */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.video-background video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 177.77vh; /* 16:9 video responsivno */
+    height: 100vh;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    color: #c48d1d;
+    margin-bottom: 1rem;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.btn-primary {
+    padding: 0.8rem 2rem;
+    background: #c48d1d;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: #a17316;
+}
