@@ -2,6 +2,8 @@ body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
     color: #333;
+    margin: 0;
+    padding: 0;
 }
 
 /* Header */
@@ -25,19 +27,13 @@ body {
     height: 50px;
 }
 
-.menu-toggle {
-    display: none;
-    font-size: 2rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #333;
-}
-
+/* Navigacija */
 .site-nav ul {
     list-style: none;
     display: flex;
     gap: 2rem;
+    margin: 0;
+    padding: 0;
 }
 
 .site-nav a {
@@ -120,9 +116,10 @@ button:hover {
     text-align: center;
     font-size: 1rem;
     color: #777;
+    padding: 1rem 0;
 }
 
-/* Styling za index.html (Početna stranica) */
+/* Styling za index.html */
 .index-page .hero {
     background-color: rgba(0, 0, 0, 0.5);
 }
@@ -215,8 +212,19 @@ button:hover {
     background: #a17316;
 }
 
-/* Responsivnost */
+/* Responsive meni button */
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+}
+
+/* Responsive pravila */
 @media (max-width: 768px) {
+
     .menu-toggle {
         display: block;
     }
