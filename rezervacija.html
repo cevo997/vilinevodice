@@ -28,20 +28,22 @@
     <section class="section">
         <h1>Rezervacija</h1>
         <p>Popunite formu kako biste rezervisali svoj boravak u Kozi A-Frame vikendici.</p>
-        <form action="https://formspree.io/f/mrbpwepa" method="POST">
-            <input type="text" name="ime" placeholder="Ime i prezime" required>
-            <input type="tel" name="telefon" placeholder="Kontakt telefon" required>
-            <input type="email" name="email" placeholder="Email adresa" required>
-            <label for="datumOd">Datum od:</label>
-            <input type="date" id="datumOd" name="datumOd" required>
-            <label for="datumDo">Datum do:</label>
-            <input type="date" id="datumDo" name="datumDo" required>
-            <button type="submit">Rezerviši</button>
-        </form>
+        <div class="form-container">
+            <form class="reservation-form" action="https://formspree.io/f/mrbpwepa" method="POST">
+                <input type="text" name="ime" placeholder="Ime i prezime" required>
+                <input type="tel" name="telefon" placeholder="Kontakt telefon" required>
+                <input type="email" name="email" placeholder="Email adresa" required>
+                <label for="datumOd">Datum od:</label>
+                <input type="date" id="datumOd" name="datumOd" required>
+                <label for="datumDo">Datum do:</label>
+                <input type="date" id="datumDo" name="datumDo" required>
+                <button type="submit">Rezerviši</button>
+            </form>
+        </div>
     </section>
 </main>
 
-<footer>
+<footer class="footer">
     <p>&copy; 2025 Kozi A-Frame Vikendica</p>
 </footer>
 
