@@ -1,10 +1,15 @@
 /* Zajednički stilovi za sve stranice */
-body {
-    font-family: Arial, sans-serif;
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
     line-height: 1.6;
     color: #333;
+    margin: 0;
 }
 
 .site-header {
@@ -75,6 +80,7 @@ body {
     height: 100vh;
     transform: translate(-50%, -50%);
     pointer-events: none;
+    object-fit: cover;
 }
 
 .hero-content {
@@ -101,18 +107,21 @@ button {
     text-decoration: none;
     border: none;
     border-radius: 5px;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
 }
 
 button:hover {
     background: #004999;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .footer {
     background: #f4f4f4;
     text-align: center;
-    padding: 1rem 0;
+    padding: 2rem 0;
+    font-size: 1rem;
+    color: #777;
 }
 
 /* Styling za index.html (Početna stranica) */
@@ -176,6 +185,14 @@ button:hover {
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.rezervacija-page .reservation-form input:focus,
+.rezervacija-page .reservation-form select:focus,
+.rezervacija-page .reservation-form textarea:focus {
+    border-color: #c48d1d;
+    outline: none;
 }
 
 .rezervacija-page .reservation-form button {
@@ -191,6 +208,7 @@ button:hover {
 
 .rezervacija-page .reservation-form button:hover {
     background: #a17316;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Styling za o-nama.html (O nama) */
@@ -222,4 +240,29 @@ button:hover {
     max-width: 100%;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsivnost */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .hero-content button {
+        padding: 0.5rem 1rem;
+    }
+
+    .reservation-form {
+        padding: 1.5rem;
+    }
+
+    .reservation-form input,
+    .reservation-form select,
+    .reservation-form textarea {
+        padding: 1rem;
+    }
 }
