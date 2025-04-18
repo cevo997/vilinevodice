@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Rezervacija - A-Frame Viline Vodice</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body class="rezervacija-page" style="background: url('images/image1.png') no-repeat center center/cover;">
 
@@ -34,9 +35,9 @@
                 <input type="tel" name="telefon" placeholder="Kontakt telefon" required>
                 <input type="email" name="email" placeholder="Email adresa" required>
                 <label for="datumOd">Datum od:</label>
-                <input type="date" id="datumOd" name="datumOd" required>
+                <input type="text" id="datumOd" name="datumOd" required>
                 <label for="datumDo">Datum do:</label>
-                <input type="date" id="datumDo" name="datumDo" required>
+                <input type="text" id="datumDo" name="datumDo" required>
                 <button type="submit">Rezerviši</button>
             </form>
         </div>
@@ -47,6 +48,7 @@
     <p>&copy; 2025 A-Frame Viline Vodice</p>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
 const zauzetiDatumi = [
     "2025-04-20",
@@ -54,29 +56,19 @@ const zauzetiDatumi = [
     "2025-05-01"
 ];
 
-function proveriZauzeteDatume() {
-    const od = document.getElementById('datumOd');
-    const doD = document.getElementById('datumDo');
+// Kalendar za "Datum od"
+flatpickr("#datumOd", {
+    dateFormat: "Y-m-d",
+    disable: zauzetiDatumi,
+    locale: "sr"
+});
 
-    od.addEventListener('change', validiraj);
-    doD.addEventListener('change', validiraj);
-
-    function validiraj() {
-        const start = new Date(od.value);
-        const end = new Date(doD.value);
-        if (!od.value || !doD.value) return;
-
-        for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
-            let dISO = d.toISOString().split('T')[0];
-            if (zauzetiDatumi.includes(dISO)) {
-                alert("Nažalost, termin od " + od.value + " do " + doD.value + " sadrži zauzet datum!");
-                break;
-            }
-        }
-    }
-}
-
-window.onload = proveriZauzeteDatume;
+// Kalendar za "Datum do"
+flatpickr("#datumDo", {
+    dateFormat: "Y-m-d",
+    disable: zauzetiDatumi,
+    locale: "sr"
+});
 </script>
 
 </body>
