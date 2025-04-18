@@ -6,16 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Rezervacija - A-Frame Viline Vodice</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Stilizovanje za zauzete datume */
-        input[type="date"].zauzet {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-    </style>
 </head>
-<body style="background: url('images/image1.png') no-repeat center center fixed; background-size: cover;">
+<body class="rezervacija-page" style="background: url('images/image1.png') no-repeat center center/cover;">
 
 <header class="site-header">
     <div class="container">
@@ -25,7 +17,6 @@
         <nav class="site-nav">
             <ul>
                 <li><a href="rezervacija.html">Rezerviši</a></li>
-                <li><a href="galerija.html">Galerija</a></li>
                 <li><a href="o-nama.html">O nama</a></li>
                 <li><a href="kontakt.html">Kontakt</a></li>
             </ul>
@@ -70,24 +61,15 @@ function proveriZauzeteDatume() {
     od.addEventListener('change', validiraj);
     doD.addEventListener('change', validiraj);
 
-    // Funkcija koja proverava zauzete datume i menja stil
     function validiraj() {
         const start = new Date(od.value);
         const end = new Date(doD.value);
         if (!od.value || !doD.value) return;
 
-        // Obriši prethodno obeležene zauzete datume
-        od.classList.remove('zauzet');
-        doD.classList.remove('zauzet');
-
         for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
             let dISO = d.toISOString().split('T')[0];
             if (zauzetiDatumi.includes(dISO)) {
                 alert("Nažalost, termin od " + od.value + " do " + doD.value + " sadrži zauzet datum!");
-                
-                // Obeležavanje datuma kao zauzet
-                od.classList.add('zauzet');
-                doD.classList.add('zauzet');
                 break;
             }
         }
