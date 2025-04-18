@@ -4,7 +4,6 @@ body {
     color: #333;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 /* Header */
@@ -73,7 +72,7 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 177.77vh;
+    width: 177.77vh; /* 16:9 aspect ratio */
     height: 100vh;
     transform: translate(-50%, -50%);
     pointer-events: none;
@@ -222,12 +221,11 @@ button:hover {
     cursor: pointer;
     color: #333;
 }
-
 /* Stilizacija za kontakt formu */
 .contact-form {
     width: 100%;
     max-width: 600px;
-    margin: 2rem auto;
+    margin: 0 auto;
     background: rgba(255, 255, 255, 0.95);
     padding: 2rem;
     border-radius: 10px;
@@ -277,24 +275,8 @@ button:hover {
     background: #a17316;
 }
 
-/* Stilizacija za h2 i p u sekciji kontakt */
-.section h2 {
-    font-size: 2.5rem;
-    text-align: center;
-    color: #333;
-    margin-bottom: 1rem;
-}
-
-.section p {
-    font-size: 1.2rem;
-    color: #666;
-    text-align: center;
-    margin-top: 1rem;
-}
-
 /* Responsivnost */
 @media (max-width: 768px) {
-
     .contact-form {
         padding: 1.5rem;
     }
@@ -302,14 +284,10 @@ button:hover {
     .contact-form button {
         font-size: 0.9rem;
     }
+}
 
-    .section h2 {
-        font-size: 2rem;
-    }
-
-    .section p {
-        font-size: 1rem;
-    }
+/* Responsive pravila */
+@media (max-width: 768px) {
 
     .menu-toggle {
         display: block;
@@ -355,9 +333,90 @@ button:hover {
     .btn-primary {
         padding: 0.5rem 1.5rem;
     }
+/* Stilizacija za h2 i p u sekciji kontakt */
+.section h2 {
+    font-size: 2.5rem; /* Veća veličina fonta */
+    text-align: center; /* Centriranje teksta */
+    color: #333; /* Tamna boja */
+    margin-bottom: 1rem; /* Razmak ispod naslova */
 }
 
-/* --- DODATO -- */
-main {
-    padding-top: 120px;
+.section p {
+    font-size: 1.2rem; /* Standardna veličina fonta */
+    color: #666; /* Siva boja za paragraf */
+    text-align: center; /* Centriranje teksta */
+    margin-top: 1rem; /* Razmak iznad paragrafa */
+}
+
+/* Stilizacija za kontakt formu */
+.contact-form {
+    width: 100%;
+    max-width: 600px;
+    margin: 2rem auto; /* Marginu sa vrha da bi bila centralizovana */
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: bold;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #c48d1d;
+    background-color: #fff;
+    box-shadow: 0 0 8px rgba(0, 102, 204, 0.2);
+    outline: none;
+}
+
+.contact-form button {
+    width: 100%;
+    padding: 1rem;
+    background: #c48d1d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.contact-form button:hover {
+    background: #a17316;
+}
+
+/* Responsivnost */
+@media (max-width: 768px) {
+    .contact-form {
+        padding: 1.5rem;
+    }
+
+    .contact-form button {
+        font-size: 0.9rem;
+    }
+
+    .section h2 {
+        font-size: 2rem;
+    }
+
+    .section p {
+        font-size: 1rem;
+    }
 }
