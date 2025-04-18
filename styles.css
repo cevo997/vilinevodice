@@ -173,6 +173,14 @@ button:hover {
     align-items: center;
 }
 
+.reservation-form label {
+    display: block; /* Postavlja labelu kao blok element, što znači da će biti iznad polja */
+    margin-bottom: 0.5rem; /* Dodaje razmak između label i inputa */
+    color: #333;
+    font-weight: bold;
+    text-align: left; /* Poravnava labelu levo */
+}
+
 .reservation-form input,
 .reservation-form select,
 .reservation-form textarea {
