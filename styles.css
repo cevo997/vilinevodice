@@ -1,3 +1,4 @@
+/* Reset */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -8,14 +9,9 @@ body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
     color: #333;
-    background-color: #fafafa;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
+/* Header */
 .site-header {
     background: rgba(255, 255, 255, 0.95);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -43,6 +39,7 @@ a {
 }
 
 .site-nav a {
+    text-decoration: none;
     color: #333;
     font-weight: bold;
     transition: color 0.3s ease;
@@ -52,109 +49,6 @@ a {
     color: #0066cc;
 }
 
-.section {
-    padding: 6rem 2rem 4rem;
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.section h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: #333;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.section p {
-    font-size: 1.2rem;
-    color: #666;
-    margin-bottom: 2rem;
-}
-
-.form-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.reservation-form {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    max-width: 500px;
-}
-
-.reservation-form input,
-.reservation-form select,
-.reservation-form textarea {
-    width: 100%;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    font-size: 1rem;
-    background-color: #f9f9f9;
-    transition: all 0.3s ease;
-}
-
-.reservation-form input:focus,
-.reservation-form select:focus,
-.reservation-form textarea:focus {
-    border-color: #c48d1d;
-    background-color: #fff;
-    box-shadow: 0 0 8px rgba(0, 102, 204, 0.2);
-    outline: none;
-}
-
-.reservation-form input::placeholder,
-.reservation-form textarea::placeholder {
-    color: #888;
-    font-style: italic;
-}
-
-.reservation-form button {
-    width: 100%;
-    padding: 1rem;
-    background: #c48d1d;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.reservation-form button:hover {
-    background: #a17316;
-}
-
-.footer {
-    background: #f4f4f4;
-    text-align: center;
-    padding: 2rem 0;
-    font-size: 1rem;
-    color: #777;
-}
-
-@media (max-width: 768px) {
-    .section h1 {
-        font-size: 2rem;
-    }
-
-    .section p {
-        font-size: 1rem;
-    }
-
-    .reservation-form input,
-    .reservation-form select,
-    .reservation-form textarea {
-        padding: 0.8rem;
-    }
-}
 /* Hero sekcija sa video */
 .hero {
     position: relative;
@@ -205,4 +99,80 @@ a {
 
 .btn-primary:hover {
     background: #a17316;
+}
+
+/* Rezervacija forma */
+.rezervacija-page .section {
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    max-width: 600px;
+    margin: auto;
+    background: rgba(255,255,255,0.9);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+.rezervacija-page .section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.rezervacija-page .section p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #666;
+}
+
+.reservation-form input,
+.reservation-form select,
+.reservation-form textarea {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+}
+
+.reservation-form input:focus,
+.reservation-form select:focus,
+.reservation-form textarea:focus {
+    border-color: #c48d1d;
+    background-color: #fff;
+    box-shadow: 0 0 8px rgba(0, 102, 204, 0.2);
+    outline: none;
+}
+
+.reservation-form button {
+    width: 100%;
+    padding: 1rem;
+    background: #c48d1d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.reservation-form button:hover {
+    background: #a17316;
+}
+
+/* Footer */
+.footer {
+    background: #f4f4f4;
+    text-align: center;
+    padding: 2rem 0;
+    font-size: 1rem;
+    color: #777;
+}
+
+/* Responsivnost */
+@media (max-width: 768px) {
+    .hero-content h1 { font-size: 2rem; }
+    .hero-content p { font-size: 1rem; }
+    .btn-primary { padding: 0.5rem 1.5rem; }
 }
