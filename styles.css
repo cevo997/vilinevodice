@@ -356,3 +356,40 @@ button:hover {
         padding: 0.5rem 1.5rem;
     }
 }
+
+/* About Page Specific */
+.about-page .section {
+    max-width: 800px;
+    margin: 7rem auto 3rem;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 3rem 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.about-page .section h1 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.about-page .section p {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.8;
+}
+
+.about-page .section p + p {
+    margin-top: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .about-page .section h1 {
+        font-size: 2rem;
+    }
+
+    .about-page .section p {
+        font-size: 1rem;
+    }
+}
