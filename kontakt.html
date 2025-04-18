@@ -14,6 +14,7 @@
             <a href="index.html" class="logo">
                 <img src="/vilinevodice/images/logo.png" alt="Kozi A-Frame">
             </a>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
             <nav class="site-nav">
                 <ul>
                     <li><a href="rezervacija.html">Rezerviši</a></li>
@@ -36,5 +37,10 @@
     <footer>
         <p>&copy; 2025 Kozi A-Frame Vikendica</p>
     </footer>
+    <script>
+function toggleMenu() {
+    document.getElementById('mainMenu').classList.toggle('active');
+}
+</script>
 </body>
 </html>
