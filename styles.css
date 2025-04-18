@@ -408,28 +408,37 @@ input[type="date"].zauzet {
     color: #721c24;
     border: 1px solid #f5c6cb;
 }
+/* Footer */
 .footer {
     text-align: center;
     padding: 20px;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     color: #fff;
 }
 
+/* Ikonice u footeru */
 .footer-icons {
     margin-bottom: 10px;
 }
 
 .footer-icons a {
     display: inline-block;
-    margin: 0 15px;
-    color: #c48d1d !important;
-    font-size: 30px;
-    text-decoration: none;
+    margin: 0 15px;             /* pravi razmak između ikonica */
+    color: #c48d1d;             /* tvoja boja */
+    font-size: 30px;            /* veće ikonice */
+    text-decoration: none;      /* briše crtice/podvlake */
     transition: color 0.3s ease;
 }
 
 .footer-icons a:hover {
-    color: #fff !important;
+    color: #fff;                /* hover efekat */
 }
 
+/* Responzivnost: manji razmaci na manjim ekranima */
+@media (max-width: 768px) {
+    .footer-icons a {
+        margin: 0 10px; /* manji razmak na telefonima */
+        font-size: 25px; /* manja veličina ikonica na manjim ekranima */
+    }
 }
+
