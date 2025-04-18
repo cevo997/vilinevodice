@@ -1,4 +1,3 @@
-/* Zajednički stilovi za sve stranice */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -9,153 +8,14 @@ body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
     color: #333;
-    margin: 0;
-    font-size: 16px; /* Dodavanje veličine fonta */
-}
-
-/* Polja za unos sa lepšim izgledom */
-.rezervacija-page .reservation-form input,
-.rezervacija-page .reservation-form select,
-.rezervacija-page .reservation-form textarea {
-    width: 100%;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    font-size: 1rem;
-    box-sizing: border-box;
-    transition: all 0.3s ease;
-    background-color: #f9f9f9;
-    font-family: 'Arial', sans-serif;
-}
-
-/* Fokus efekat na inputima */
-.rezervacija-page .reservation-form input:focus,
-.rezervacija-page .reservation-form select:focus,
-.rezervacija-page .reservation-form textarea:focus {
-    border-color: #c48d1d;
-    background-color: #fff;
-    box-shadow: 0 0 8px rgba(0, 102, 204, 0.2);
-    outline: none;
-}
-
-/* Placeholder tekst */
-.rezervacija-page .reservation-form input::placeholder,
-.rezervacija-page .reservation-form textarea::placeholder {
-    color: #888;
-    font-style: italic;
-}
-
-/* Polja za unos - Hover efekat */
-.rezervacija-page .reservation-form input:hover,
-.rezervacija-page .reservation-form select:hover,
-.rezervacija-page .reservation-form textarea:hover {
-    border-color: #c48d1d;
     background-color: #fafafa;
 }
 
-/* Dodavanje prostora između naslova i sadržaja */
-.rezervacija-page .section h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: #333;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 2px; /* Dodavanje razmaka između slova */
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
-/* Tekst unutar forme */
-.rezervacija-page .section p {
-    font-size: 1.2rem;
-    color: #666;
-    margin-bottom: 2rem;
-    font-weight: normal;
-}
-
-/* Button sa boljim stilom */
-.rezervacija-page .reservation-form button {
-    width: 100%;
-    padding: 1rem;
-    background: #c48d1d;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-
-.rezervacija-page .reservation-form button:hover {
-    background: #004999;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Hero sekcija sa video pozadinom */
-.hero-content {
-    position: relative;
-    z-index: 2;
-    color: white;
-    text-align: center;
-}
-
-.hero-content h1 {
-    font-size: 3rem;
-    color: #c48d1d;
-    margin-bottom: 1rem;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.hero-content p {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-    font-weight: 300;
-    color: #fff;
-}
-
-/* Dodavanje efekta za hover na dugmadi */
-button:hover {
-    background: #004999;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-/* Generalni stilovi za footer */
-.footer {
-    background: #f4f4f4;
-    text-align: center;
-    padding: 2rem 0;
-    font-size: 1rem;
-    color: #777;
-    font-family: 'Arial', sans-serif;
-}
-
-/* Responsivnost */
-@media (max-width: 768px) {
-    .hero-content h1 {
-        font-size: 2rem;
-    }
-
-    .hero-content p {
-        font-size: 1rem;
-    }
-
-    .hero-content button {
-        padding: 0.5rem 1rem;
-    }
-
-    .reservation-form {
-        padding: 1.5rem;
-    }
-
-    .reservation-form input,
-    .reservation-form select,
-    .reservation-form textarea {
-        padding: 1rem;
-    }
-}
-
-/* Styling za header */
 .site-header {
     background: rgba(255, 255, 255, 0.95);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -180,12 +40,9 @@ button:hover {
     list-style: none;
     display: flex;
     gap: 2rem;
-    margin: 0;
-    padding: 0;
 }
 
 .site-nav a {
-    text-decoration: none;
     color: #333;
     font-weight: bold;
     transition: color 0.3s ease;
@@ -195,71 +52,24 @@ button:hover {
     color: #0066cc;
 }
 
-/* Hero sekcija sa pozadinom */
-.hero {
-    position: relative;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    overflow: hidden;
-}
-
-.video-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: 1;
-}
-
-.video-background iframe {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 177.77vh; /* 16:9 aspect ratio */
-    height: 100vh;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-}
-
-/* Styling za index.html (Početna stranica) */
-.index-page .hero {
-    background-color: rgba(0, 0, 0, 0.5); /* Dodaj tamnu pozadinu za hero sekciju */
-}
-
-.index-page .hero-content h1 {
-    font-size: 3rem;
-    color: #c48d1d; /* Naglašena boja za h1 */
-}
-
-.index-page .hero-content p {
-    font-size: 1.2rem;
-    margin-top: 1rem;
-}
-
-.index-page button {
-    margin-top: 1.5rem;
-}
-
-/* Rezervacija sekcija */
-.rezervacija-page .section {
-    text-align: center;
-    padding: 4rem 2rem;
+.section {
+    padding: 6rem 2rem 4rem;
     max-width: 600px;
-    margin: auto;
+    margin: 0 auto;
+    text-align: center;
 }
 
-.rezervacija-page .section h1 {
+.section h1 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-.rezervacija-page .section p {
+.section p {
     font-size: 1.2rem;
+    color: #666;
     margin-bottom: 2rem;
 }
 
@@ -269,7 +79,7 @@ button:hover {
     align-items: center;
 }
 
-.rezervacija-page .reservation-form {
+.reservation-form {
     background: rgba(255, 255, 255, 0.9);
     padding: 2rem;
     border-radius: 10px;
@@ -278,59 +88,70 @@ button:hover {
     max-width: 500px;
 }
 
-.rezervacija-page .reservation-form input,
-.rezervacija-page .reservation-form select,
-.rezervacija-page .reservation-form textarea {
+.reservation-form input,
+.reservation-form select,
+.reservation-form textarea {
     width: 100%;
     padding: 1rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
+    margin-bottom: 1.5rem;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
 }
 
-.rezervacija-page .reservation-form button {
+.reservation-form input:focus,
+.reservation-form select:focus,
+.reservation-form textarea:focus {
+    border-color: #c48d1d;
+    background-color: #fff;
+    box-shadow: 0 0 8px rgba(0, 102, 204, 0.2);
+    outline: none;
+}
+
+.reservation-form input::placeholder,
+.reservation-form textarea::placeholder {
+    color: #888;
+    font-style: italic;
+}
+
+.reservation-form button {
     width: 100%;
     padding: 1rem;
     background: #c48d1d;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     font-size: 1rem;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.rezervacija-page .reservation-form button:hover {
+.reservation-form button:hover {
     background: #a17316;
 }
 
-/* Styling za o-nama.html (O nama) */
-.o-nama-page .section {
-    padding: 4rem 2rem;
+.footer {
+    background: #f4f4f4;
     text-align: center;
+    padding: 2rem 0;
+    font-size: 1rem;
+    color: #777;
 }
 
-.o-nama-page .section h2 {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 1rem;
-}
+@media (max-width: 768px) {
+    .section h1 {
+        font-size: 2rem;
+    }
 
-.o-nama-page .section p {
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
-    color: #555;
-}
+    .section p {
+        font-size: 1rem;
+    }
 
-.o-nama-page .section .gallery {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.o-nama-page .section .gallery img {
-    max-width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    .reservation-form input,
+    .reservation-form select,
+    .reservation-form textarea {
+        padding: 0.8rem;
+    }
 }
