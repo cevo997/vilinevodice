@@ -57,7 +57,7 @@ body {
 
 .video-background {
     position: absolute;
-    top: 10px;
+    top: 100px;
     left: 0;
     width: 100%;
     height: 100%;
@@ -110,7 +110,7 @@ button:hover {
 .footer {
     background: #f4f4f4;
     text-align: center;
-    padding: 1rem 0;
+    
 }
 
 /* Styling za index.html (Početna stranica) */
@@ -199,7 +199,7 @@ button:hover {
     padding: 2rem 0;
     font-size: 1rem;
     color: #777;
-    top: -10px
+
 }
 
 /* Responsivnost */
