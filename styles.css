@@ -178,7 +178,7 @@ button:hover {
     margin-bottom: 0.5rem; /* Dodaje razmak između label i inputa */
     color: #333;
     font-weight: bold;
-    text-align: left; /* Poravnava labelu levo */
+    text-align: center; /* Poravnava labelu levo */
 }
 
 .reservation-form input,
