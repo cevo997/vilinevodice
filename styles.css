@@ -198,6 +198,7 @@ button:hover {
     padding: 2rem 0;
     font-size: 1rem;
     color: #777;
+    top: -10px
 }
 
 /* Responsivnost */
