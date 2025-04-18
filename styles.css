@@ -333,4 +333,29 @@ button:hover {
     .btn-primary {
         padding: 0.5rem 1.5rem;
     }
+    /* Stilizacija za h2 i tekst ispod */
+.section {
+    padding: 6rem 2rem 4rem; /* Dodajte padding-top da biste osigurali da sadržaj ne bude prekriven menijem */
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center; /* Centriranje teksta */
+}
+
+.section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.section p {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+/* Ako želimo dodatno prilagoditi marginu i poziciju sekcije */
+.section {
+    position: relative;
+    top: 80px; /* Podesite top vrednost prema visini menija, tako da tekst ne bude prekriven */
+}
+
 }
