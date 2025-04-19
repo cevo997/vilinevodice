@@ -1,10 +1,23 @@
+/* Reset za širinu i box model */
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+/* Osnovni stil */
 body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
     color: #333;
-    margin: 0;
-    padding: 0;
-    padding-top: 80px; /* Podešavanje visine fiksiranog menija */
+    padding-top: 80px; /* prostor za fiksirani meni */
 }
 
 /* Header */
@@ -18,6 +31,9 @@ body {
 }
 
 .site-header .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -48,6 +64,16 @@ body {
     color: #0066cc;
 }
 
+/* Responsive meni button */
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+}
+
 /* Hero sekcija sa video pozadinom */
 .hero {
     position: relative;
@@ -61,7 +87,7 @@ body {
 
 .video-background {
     position: absolute;
-    top: 100px; /* Ovdje možeš podesiti da bude ispod menija */
+    top: 100px;
     left: 0;
     width: 100%;
     height: 100%;
@@ -100,7 +126,6 @@ button {
     background: #c48d1d;
     color: white;
     padding: 0.75rem 1.5rem;
-    text-decoration: none;
     border: none;
     border-radius: 5px;
     transition: background 0.3s ease;
@@ -113,116 +138,30 @@ button:hover {
 
 /* Footer */
 .footer {
-    background: #f4f4f4;
     text-align: center;
-    font-size: 1rem;
-    color: #777;
-    padding: 1rem 0;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
 }
 
-/* Styling za index.html */
-.index-page .hero {
-    background-color: rgba(0, 0, 0, 0.5);
+.footer-icons {
+    margin-bottom: 10px;
 }
 
-.index-page .hero-content h1 {
-    font-size: 3rem;
+.footer-icons a {
+    display: inline-block;
+    margin: 0 15px;
     color: #c48d1d;
+    font-size: 30px;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
-.index-page .hero-content p {
-    font-size: 1.2rem;
-    margin-top: 1rem;
+.footer-icons a:hover {
+    color: #fff;
 }
 
-.index-page button {
-    margin-top: 1.5rem;
-}
-
-/* Rezervacija forma */
-.rezervacija-page .section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 6rem 2rem 4rem;
-    max-width: 600px;
-    margin: 6rem auto;
-    background: rgba(255,255,255,0.95);
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.2);
-    padding-top: 10px;
-}
-
-.rezervacija-page .section h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: #333;
-}
-
-.rezervacija-page .section p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    color: #666;
-}
-
-.reservation-form {
-    width: 100%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.reservation-form label {
-    display: block; /* Postavlja labelu kao blok element, što znači da će biti iznad polja */
-    margin-bottom: 0.5rem; /* Dodaje razmak između label i inputa */
-    color: #333;
-    font-weight: bold;
-    text-align: center; /* Poravnava labelu levo */
-}
-
-.reservation-form input,
-.reservation-form select,
-.reservation-form textarea {
-    width: 100%;
-    max-width: 400px;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    transition: all 0.3s ease;
-    box-sizing: border-box;
-}
-
-.reservation-form input:focus,
-.reservation-form select:focus,
-.reservation-form textarea:focus {
-    border-color: #c48d1d;
-    background-color: #fff;
-    box-shadow: 0 0 8px rgba(0, 102, 204, 0.2);
-    outline: none;
-}
-
-.reservation-form button {
-    max-width: 400px;
-    width: 100%;
-    padding: 1rem;
-    background: #c48d1d;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.reservation-form button:hover {
-    background: #a17316;
-}
-
-/* Stilizacija za kontakt formu */
+/* Kontakt forma */
 .contact-form {
     width: 100%;
     max-width: 600px;
@@ -249,7 +188,6 @@ button:hover {
     border-radius: 8px;
     background-color: #f9f9f9;
     transition: all 0.3s ease;
-    box-sizing: border-box;
 }
 
 .contact-form input:focus,
@@ -276,7 +214,7 @@ button:hover {
     background: #a17316;
 }
 
-/* Stilizacija za h2 i p u sekciji kontakt */
+/* Sekcija naslov i tekst */
 .section h2 {
     font-size: 2.5rem;
     text-align: center;
@@ -291,46 +229,14 @@ button:hover {
     margin-top: 1rem;
 }
 
-/* Responsivnost */
+/* Responsivnost za male ekrane */
 @media (max-width: 768px) {
-    .contact-form {
-        padding: 1.5rem;
-    }
-
-    .contact-form button {
-        font-size: 0.9rem;
-    }
-
-    .section h2 {
-        font-size: 2rem;
-    }
-
-    .section p {
-        font-size: 1rem;
-    }
-}
-
-/* Responsive meni button */
-.menu-toggle {
-    display: none;
-    font-size: 2rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #333;
-}
-
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
-
     .site-nav {
         position: absolute;
         top: 70px;
         right: 2rem;
         background: rgba(255, 255, 255, 0.95);
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         border-radius: 8px;
         padding: 1rem;
         display: none;
@@ -354,6 +260,10 @@ button:hover {
         list-style: none;
     }
 
+    .menu-toggle {
+        display: block;
+    }
+
     .hero-content h1 {
         font-size: 2rem;
     }
@@ -365,80 +275,25 @@ button:hover {
     .btn-primary {
         padding: 0.5rem 1.5rem;
     }
-}
 
-/* About Page Specific */
-.about-page .section {
-    max-width: 800px;
-    margin: 7rem auto 3rem;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 3rem 2rem;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
+    .contact-form {
+        padding: 1.5rem;
+    }
 
-.about-page .section h1 {
-    font-size: 2.8rem;
-    margin-bottom: 1rem;
-    color: #333;
-}
+    .contact-form button {
+        font-size: 0.9rem;
+    }
 
-.about-page .section p {
-    font-size: 1.2rem;
-    color: #555;
-    line-height: 1.8;
-}
-
-.about-page .section p + p {
-    margin-top: 1.5rem;
-}
-
-@media (max-width: 768px) {
-    .about-page .section h1 {
+    .section h2 {
         font-size: 2rem;
     }
 
-    .about-page .section p {
+    .section p {
         font-size: 1rem;
     }
-/* Stilizovanje za zauzete datume */
-input[type="date"].zauzet {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
-}
-/* Footer */
-.footer {
-    text-align: center;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.5);
-    color: #fff;
-}
 
-/* Ikonice u footeru */
-.footer-icons {
-    margin-bottom: 10px;
-}
-
-.footer-icons a {
-    display: inline-block;
-    margin: 0 15px;             /* pravi razmak između ikonica */
-    color: #c48d1d;             /* tvoja boja */
-    font-size: 30px;            /* veće ikonice */
-    text-decoration: none;      /* briše crtice/podvlake */
-    transition: color 0.3s ease;
-}
-
-.footer-icons a:hover {
-    color: #fff;                /* hover efekat */
-}
-
-/* Responzivnost: manji razmaci na manjim ekranima */
-@media (max-width: 768px) {
     .footer-icons a {
-        margin: 0 10px; /* manji razmak na telefonima */
-        font-size: 25px; /* manja veličina ikonica na manjim ekranima */
+        margin: 0 10px;
+        font-size: 25px;
     }
 }
-
