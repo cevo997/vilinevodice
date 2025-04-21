@@ -130,7 +130,7 @@
       db.collection("rezervacije").add(data)
         .then(_ => {
           alert("Rezervacija poslana!");
-          document.getElementById("reservationForm").reset();
+          document.getElementById("reservation-form").reset();
         })
         .catch(e => {
           console.error(e);
