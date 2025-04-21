@@ -88,7 +88,7 @@ function submitReservation() {
         brojOsoba: document.getElementById("brojOsoba").value
     };
 
-    fetch("https://script.google.com/macros/s/AKfycbxeK193Fj6nJmckDZ3KX3NjTqKjk_LiLlHVrSSUrA6TB0VPOPL79DgOyeBuIlZBax-ztA/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbya0Qh8Y9M-GhAG5vjaRRcunGJ0Wp7dOYxf6_Uijq1h_kO_0RxJOuRylfW_T5YnRp3crw/exec", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -107,10 +107,6 @@ function submitReservation() {
         console.error("Greška:", error);
         alert("Došlo je do greške prilikom slanja rezervacije.");
     });
-}
-
-function toggleMenu() {
-    document.getElementById('mainMenu').classList.toggle('active');
 }
 </script>
 
