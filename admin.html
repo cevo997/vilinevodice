@@ -1,123 +1,151 @@
 <!DOCTYPE html>
-<html lang="sr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Panel - Rezervacije</title>
-  <!-- Uključi Firebase i Firestore module -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js";
-    import { getFirestore, collection, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
-
-    // Firebase konfiguracija
-    const firebaseConfig = {
-      apiKey: "AIzaSyBhclJjGZoBFxOY_Hhr1JtyoJQKatISMAM",
-      authDomain: "a-frame-viline-vodice-71975.firebaseapp.com",
-      projectId: "a-frame-viline-vodice-71975",
-      storageBucket: "a-frame-viline-vodice-71975.firebasestorage.app",
-      messagingSenderId: "487511010862",
-      appId: "1:487511010862:web:c3c4b9abfa3095f826b9bf",
-      measurementId: "G-LLEG9FMNM5"
-    };
-
-    // Inicijalizacija Firebase
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-
-    // Inicijalizacija Firestore
-    const db = getFirestore(app);
-
-    // Funkcija za dohvat rezervacija
-    async function fetchReservations() {
-      const querySnapshot = await getDocs(collection(db, "reservations"));
-      const reservationList = document.getElementById("reservation-list");
-      reservationList.innerHTML = ''; // Očisti prethodne podatke
-
-      querySnapshot.forEach((doc) => {
-        const reservationData = doc.data();
-        const reservationItem = document.createElement("div");
-        reservationItem.classList.add("reservation-item");
-        reservationItem.innerHTML = `
-          <p>Ime: ${reservationData.name}</p>
-          <p>Email: ${reservationData.email}</p>
-          <p>Datum: ${reservationData.date}</p>
-          <button onclick="approveReservation('${doc.id}')">Odobri</button>
-          <button onclick="rejectReservation('${doc.id}')">Odbij</button>
-        `;
-        reservationList.appendChild(reservationItem);
-      });
-    }
-
-    // Funkcija za odobravanje rezervacije
-    async function approveReservation(reservationId) {
-      const reservationRef = doc(db, "reservations", reservationId);
-      await updateDoc(reservationRef, {
-        status: "approved"
-      });
-      alert("Rezervacija je odobrena!");
-      fetchReservations(); // Osveži listu rezervacija
-    }
-
-    // Funkcija za odbijanje rezervacije
-    async function rejectReservation(reservationId) {
-      const reservationRef = doc(db, "reservations", reservationId);
-      await updateDoc(reservationRef, {
-        status: "rejected"
-      });
-      alert("Rezervacija je odbijena!");
-      fetchReservations(); // Osveži listu rezervacija
-    }
-
-    // Poziv funkcije za učitavanje rezervacija
-    window.onload = fetchReservations;
-  </script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f5f5f5;
-    }
-    header {
-      background-color: #333;
-      color: white;
-      text-align: center;
-      padding: 10px 0;
-    }
-    .reservation-item {
-      background-color: #fff;
-      border: 1px solid #ddd;
-      padding: 15px;
-      margin: 10px 0;
-      border-radius: 8px;
-    }
-    .reservation-item button {
-      margin-right: 10px;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 5px;
-      background-color: #28a745;
-      color: white;
-      cursor: pointer;
-    }
-    .reservation-item button:last-child {
-      background-color: #dc3545;
-    }
-    .reservation-item button:hover {
-      opacity: 0.8;
-    }
-    #reservation-list {
-      padding: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Rezervacije</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+        }
+        #reservations-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: white;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        button {
+            margin-left: 10px;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button.approve {
+            background-color: #4CAF50;
+            color: white;
+        }
+        button.reject {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Admin Panel - Rezervacije</h1>
-  </header>
-  <div id="reservation-list">
-    <!-- Rezervacije će biti prikazane ovde -->
-  </div>
+
+    <h1>Rezervacije</h1>
+    <ul id="reservations-list">
+        <!-- Rezervacije će biti dodane ovde -->
+    </ul>
+    
+    <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js"></script>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    
+    <script type="module">
+        // Firebase konfiguracija
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+
+        // Firebase inicijalizacija
+        const firebaseConfig = {
+            apiKey: "AIzaSyBhclJjGZoBFxOY_Hhr1JtyoJQKatISMAM",
+            authDomain: "a-frame-viline-vodice-71975.firebaseapp.com",
+            projectId: "a-frame-viline-vodice-71975",
+            storageBucket: "a-frame-viline-vodice-71975.firebasestorage.app",
+            messagingSenderId: "487511010862",
+            appId: "1:487511010862:web:c3c4b9abfa3095f826b9bf",
+            measurementId: "G-LLEG9FMNM5"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // EmailJS konfiguracija
+        emailjs.init('eAYJ4MjHME7vBYIe3'); // Tvoj EmailJS User ID
+
+        // Funkcija za učitavanje rezervacija
+        async function fetchReservations() {
+            const reservationsCollection = collection(db, "reservations");
+            const querySnapshot = await getDocs(reservationsCollection);
+            const reservationsList = document.getElementById("reservations-list");
+            
+            // Očisti listu pre nego što dodaš nove rezervacije
+            reservationsList.innerHTML = "";
+
+            querySnapshot.forEach((doc) => {
+                const reservation = doc.data();
+                const li = document.createElement("li");
+
+                li.innerHTML = `
+                    Ime: ${reservation.name}, 
+                    Email: ${reservation.email}, 
+                    Datum: ${reservation.date}, 
+                    Status: ${reservation.status}
+                    <button class="approve" onclick="approveReservation('${doc.id}')">Odobri</button>
+                    <button class="reject" onclick="rejectReservation('${doc.id}')">Odbij</button>
+                `;
+                reservationsList.appendChild(li);
+            });
+        }
+
+        // Funkcija za odobravanje rezervacije
+        async function approveReservation(id) {
+            const reservationRef = doc(db, "reservations", id);
+            await updateDoc(reservationRef, {
+                status: "approved"
+            });
+            sendEmail("approved", id); // Pošaljite email za odobrenje
+            fetchReservations(); // Osveži listu
+        }
+
+        // Funkcija za odbijanje rezervacije
+        async function rejectReservation(id) {
+            const reservationRef = doc(db, "reservations", id);
+            await updateDoc(reservationRef, {
+                status: "rejected"
+            });
+            sendEmail("rejected", id); // Pošaljite email za odbijanje
+            fetchReservations(); // Osveži listu
+        }
+
+        // Funkcija za slanje emaila
+        async function sendEmail(status, id) {
+            const reservationRef = doc(db, "reservations", id);
+            const docSnap = await getDocs(reservationRef);
+            const reservation = docSnap.data();
+            const templateParams = {
+                name: reservation.name,
+                email: reservation.email,
+                status: status === "approved" ? "Odobrena" : "Odbijena"
+            };
+
+            const templateId = status === "approved" ? "template_5pt9ulh" : "template_fnzlyi4";
+
+            emailjs.send("service_dcq3bfr", templateId, templateParams)
+                .then(function(response) {
+                    console.log("Success", response);
+                }, function(error) {
+                    console.log("Error", error);
+                });
+        }
+
+        // Poziv za učitavanje rezervacija prilikom učitavanja stranice
+        window.onload = fetchReservations;
+    </script>
+
 </body>
 </html>
