@@ -345,6 +345,7 @@ button:hover {
     border-radius: 8px;
     background-color: #f9f9f9;
     transition: all 0.3s ease;
+    text-align: center;
 }
 
 .reservation-form input:focus {
@@ -365,6 +366,7 @@ button:hover {
     font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
+    margin-left: 15px;
 }
 
 .reservation-form button:hover {
