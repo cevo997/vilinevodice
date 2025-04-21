@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - Rezervacije</title>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+</head>
+<body>
+  <h1>Admin Panel za Rezervacije</h1>
+  
+  <div id="reservations"></div>
+
+  <script>
+    // Firebase konfiguracija
+    const firebaseConfig = {
+      apiKey: "AIzaSyBhclJjGZoBFxOY_Hhr1JtyoJQKatISMAM",
+      authDomain: "a-frame-viline-vodice-71975.firebaseapp.com",
+      projectId: "a-frame-viline-vodice-71975",
+      storageBucket: "a-frame-viline-vodice-71975.firebasestorage.app",
+      messagingSenderId: "487511010862",
+      appId: "1:487511010862:web:35e2b98472390c5926b9bf",
+      measurementId: "G-EP6K3T0KJL"
+    };
+    
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore(app);
+
+    // EmailJS konfiguracija
+    emailjs.init("eAYJ4MjHME7vBYIe3");
+
+    // Funkcija za prikaz rezervacija
+    function displayReservations() {
+      const reservationsDiv = document.getElementById('reservations');
+      
+      db.collection('reservations').get().then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          const data = doc.data();
+          const reservationId = doc.id;
+          const customerName = data.customerName;
+          const reservationDate = data.date;
+          
+          const reservationElement = document.createElement('div');
+          reservationElement.innerHTML = `
+            <p>Ime: ${customerName}, Datum: ${reservationDate}</p>
+            <button onclick="approveReservation('${reservationId}', '${customerName}', '${reservationDate}')">Odobri</button>
+            <button onclick="rejectReservation('${reservationId}', '${customerName}', '${reservationDate}')">Odbij</button>
+          `;
+          reservationsDiv.appendChild(reservationElement);
+        });
+      });
+    }
+
+    // Funkcija za odobravanje rezervacije
+    function approveReservation(reservationId, customerName, reservationDate) {
+      db.collection('reservations').doc(reservationId).update({
+        status: 'approved'
+      }).then(() => {
+        sendEmail('approve', customerName, reservationDate);
+      });
+    }
+
+    // Funkcija za odbijanje rezervacije
+    function rejectReservation(reservationId, customerName, reservationDate) {
+      db.collection('reservations').doc(reservationId).update({
+        status: 'rejected'
+      }).then(() => {
+        sendEmail('reject', customerName, reservationDate);
+      });
+    }
+
+    // Funkcija za slanje email-a
+    function sendEmail(action, customerName, reservationDate) {
+      const templateParams = {
+        customerName: customerName,
+        reservationDate: reservationDate,
+        action: action
+      };
+
+      const templateId = action === 'approve' ? 'template_5pt9ulh' : 'template_fnzlyi4';
+
+      emailjs.send('service_dcq3bfr', templateId, templateParams)
+        .then(response => {
+          console.log('Email sent successfully', response);
+        })
+        .catch(error => {
+          console.error('Error sending email', error);
+        });
+    }
+
+    // Pozivanje funkcije za prikazivanje rezervacija
+    displayReservations();
+  </script>
+</body>
+</html>
