@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
-    <!-- Firebase SDK -->
+    <!-- Firebase SDK (bez modula) -->
     <script src="https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js"></script>
     <!-- EmailJS SDK -->
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
-      // Initialize Firebase
+      // Inicijalizacija Firebase-a
       const firebaseConfig = {
         apiKey: "AIzaSyBhclJjGZoBFxOY_Hhr1JtyoJQKatISMAM",
         authDomain: "a-frame-viline-vodice-71975.firebaseapp.com",
@@ -21,13 +21,14 @@
         measurementId: "G-LLEG9FMNM5"
       };
 
+      // Inicijalizacija Firebase aplikacije
       const app = firebase.initializeApp(firebaseConfig);
       const db = firebase.firestore(app);
 
-      // EmailJS initialization
+      // Inicijalizacija EmailJS
       emailjs.init("eAYJ4MjHME7vBYIe3");
 
-      // Load reservations from Firestore
+      // Funkcija za učitavanje rezervacija
       function loadReservations() {
         const reservationsRef = db.collection("reservations");
         reservationsRef.get().then((querySnapshot) => {
@@ -50,7 +51,7 @@
         });
       }
 
-      // Approve reservation
+      // Funkcija za odobravanje rezervacije
       function approveReservation(reservationId, email) {
         db.collection("reservations").doc(reservationId).update({
           status: "approved"
@@ -62,7 +63,7 @@
         });
       }
 
-      // Reject reservation
+      // Funkcija za odbijanje rezervacije
       function rejectReservation(reservationId, email) {
         db.collection("reservations").doc(reservationId).update({
           status: "rejected"
@@ -74,7 +75,7 @@
         });
       }
 
-      // Send email to user via EmailJS
+      // Funkcija za slanje email-a putem EmailJS
       function sendEmail(email, status) {
         const templateParams = {
           to_email: email,
@@ -89,7 +90,7 @@
           });
       }
 
-      // Load reservations when the page loads
+      // Učitavanje rezervacija pri učitavanju stranice
       window.onload = function() {
         loadReservations();
       }
