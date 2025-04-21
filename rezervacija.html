@@ -41,11 +41,11 @@
                 <input type="tel" id="telefon" placeholder="Kontakt telefon" required>
                 <input type="email" id="email" placeholder="Email adresa" required>
                 <label for="datumOd">Datum od:</label>
-                <input type="text" id="datumOd" required>
+                <input type="text" id="datumOd" name="datumOd" required>
                 <label for="datumDo">Datum do:</label>
-                <input type="text" id="datumDo" required>
+                <input type="text" id="datumDo" name="datumDo" required>
                 <label for="brojOsoba">Broj osoba:</label>
-                <input type="number" id="brojOsoba" min="1" max="4" required>
+                <input type="number" id="brojOsoba" name="brojOsoba" min="1" max="4" required>
                 <button type="button" onclick="submitReservation()">Rezerviši</button>
             </form>
         </div>
@@ -95,8 +95,9 @@ function submitReservation() {
         },
         body: JSON.stringify(formData)
     })
-    .then(response => response.json())
+    .then(response => response.json())  // Pokreni parsiranje JSON-a
     .then(data => {
+        console.log(data);  // Ispisivanje odgovora u konzolu za debagovanje
         if (data.status === "success") {
             alert("Rezervacija je uspešno poslata!");
         } else {
