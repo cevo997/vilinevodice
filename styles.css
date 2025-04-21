@@ -160,6 +160,97 @@ button:hover {
 .footer-icons a:hover {
     color: #fff;
 }
+/* Rezervacija forma */
+.rezervacija-page .section {
+    width: 100%;
+    max-width: 600px;
+    margin: 2rem auto;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.rezervacija-page .section h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem;
+    margin-top: 0;
+}
+
+.rezervacija-page .section p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.reservation-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.reservation-form label {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+.reservation-form input {
+    width: 100%;
+    max-width: 400px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+}
+
+.reservation-form input:focus {
+    border-color: #c48d1d;
+    background-color: #fff;
+    box-shadow: 0 0 8px rgba(0, 102, 204, 0.2);
+    outline: none;
+}
+
+.reservation-form button {
+    width: 100%;
+    max-width: 400px;
+    padding: 1rem;
+    background: #c48d1d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.reservation-form button:hover {
+    background: #a17316;
+}
+
+.reservation-form button:active {
+    transform: scale(0.98);
+}
+.reservation-form label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+.reservation-form input[type="number"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
 
 /* Kontakt forma */
 .contact-form {
