@@ -324,7 +324,6 @@ button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 25px;
 }
 
 .reservation-form label {
@@ -393,5 +392,6 @@ button:hover {
 
     .reservation-form button {
         font-size: 0.9rem;
+        margin-left: 0;
     }
 }
