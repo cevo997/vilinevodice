@@ -1,4 +1,139 @@
 <!DOCTYPE html>
+<html lang="sr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - Rezervacije</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Firebase App (modularni SDK) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+  <!-- Firebase Firestore (modularni SDK) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js"></script>
+  <!-- EmailJS -->
+  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+</head>
+
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
+
+  <header>
+    <h1>Admin Panel - Rezervacije</h1>
+    <button onclick="logout()">Logout</button>
+  </header>
+
+  <main>
+    <section>
+      <h2>Aktivne rezervacije</h2>
+      <div id="reservations-container">
+        <!-- Rezervacije će biti učitane ovde -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Firebase konfiguracija -->
+  <script>
+    // Inicijalizacija Firebase-a
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, query, where, doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBhclJjGZoBFxOY_Hhr1JtyoJQKatISMAM",
+      authDomain: "a-frame-viline-vodice-71975.firebaseapp.com",
+      projectId: "a-frame-viline-vodice-71975",
+      storageBucket: "a-frame-viline-vodice-71975.firebasestorage.app",
+      messagingSenderId: "487511010862",
+      appId: "1:487511010862:web:35e2b98472390c5926b9bf",
+      measurementId: "G-EP6K3T0KJL"
+    };
+
+    // Inicijalizuj Firebase
+    const app = initializeApp(firebaseConfig);
+
+    // Inicijalizuj Firestore
+    const db = getFirestore(app);
+
+    // Funkcija za učitavanje rezervacija u admin panelu
+    async function loadReservations() {
+      const q = query(collection(db, "rezervacije"), where("status", "==", "Na čekanju"));
+      const querySnapshot = await getDocs(q);
+
+      document.getElementById("reservations-container").innerHTML = ''; // Očisti prethodne rezervacije
+
+      querySnapshot.forEach(doc => {
+        const reservation = doc.data();
+        const reservationElement = document.createElement("div");
+        reservationElement.classList.add("reservation");
+        reservationElement.innerHTML = `
+          <div style="background-color: #fff; padding: 20px; margin: 10px 0; border-radius: 5px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+            <p><strong>Ime:</strong> ${reservation.ime}</p>
+            <p><strong>Email:</strong> ${reservation.email}</p>
+            <p><strong>Datum od:</strong> ${reservation.datumOd}</p>
+            <p><strong>Datum do:</strong> ${reservation.datumDo}</p>
+            <p><strong>Broj osoba:</strong> ${reservation.brojOsoba}</p>
+            <button onclick="approveReservation('${doc.id}')">Odobri</button>
+            <button onclick="declineReservation('${doc.id}')">Odbij</button>
+          </div>
+        `;
+        document.getElementById("reservations-container").appendChild(reservationElement);
+      });
+    }
+
+    // Funkcija za prihvatanje rezervacije
+    async function approveReservation(reservationId) {
+      const reservationRef = doc(db, "rezervacije", reservationId);
+      await updateDoc(reservationRef, {
+        status: "Prihvaćeno"
+      });
+      sendEmail(reservationId, "Prihvaćeno");
+      loadReservations(); // Osveži listu rezervacija
+    }
+
+    // Funkcija za odbijanje rezervacije
+    async function declineReservation(reservationId) {
+      const reservationRef = doc(db, "rezervacije", reservationId);
+      await updateDoc(reservationRef, {
+        status: "Odbijeno"
+      });
+      sendEmail(reservationId, "Odbijeno");
+      loadReservations(); // Osveži listu rezervacija
+    }
+
+    // Funkcija za slanje emaila korisniku koristeći EmailJS
+    function sendEmail(reservationId, status) {
+      const reservationRef = doc(db, "rezervacije", reservationId);
+      reservationRef.get().then(doc => {
+        const reservation = doc.data();
+        const emailParams = {
+          to_email: reservation.email,
+          subject: `Status rezervacije: ${status}`,
+          message: `Poštovani ${reservation.ime},\nVaša rezervacija je ${status}.\nDatum od: ${reservation.datumOd}\nDatum do: ${reservation.datumDo}`
+        };
+        
+        // Odabir template ID na osnovu statusa
+        const templateId = (status === "Prihvaćeno") ? "template_5pt9ulh" : "template_fnzlyi4";
+        
+        emailjs.send("eAYJ4MjHME7vBYIe3", templateId, emailParams)
+          .then(response => {
+            console.log("Email poslat", response);
+          }, error => {
+            console.log("Greška pri slanju emaila", error);
+          });
+      });
+    }
+
+    // Funkcija za logout (ako je potrebno)
+    function logout() {
+      // Implementiraj logiku za odjavu, ako je potrebno
+      alert("Odjavili ste se!");
+    }
+
+    // Učitaj rezervacije kada se stranica učita
+    window.onload = loadReservations;
+  </script>
+</body>
+
+</html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
