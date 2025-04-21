@@ -1,100 +1,103 @@
 <!DOCTYPE html>
-<html lang="sr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel - Rezervacije</title>
-
+    <title>Admin Panel</title>
     <!-- Firebase SDK -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-        import { getFirestore, collection, getDocs, updateDoc, doc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+    <script src="https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js"></script>
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+      // Initialize Firebase
+      const firebaseConfig = {
+        apiKey: "AIzaSyBhclJjGZoBFxOY_Hhr1JtyoJQKatISMAM",
+        authDomain: "a-frame-viline-vodice-71975.firebaseapp.com",
+        projectId: "a-frame-viline-vodice-71975",
+        storageBucket: "a-frame-viline-vodice-71975.firebasestorage.app",
+        messagingSenderId: "487511010862",
+        appId: "1:487511010862:web:c3c4b9abfa3095f826b9bf",
+        measurementId: "G-LLEG9FMNM5"
+      };
 
-        // Firebase konfiguracija
-        const firebaseConfig = {
-            apiKey: "AIzaSyBhclJjGZoBFxOY_Hhr1JtyoJQKatISMAM",
-            authDomain: "a-frame-viline-vodice-71975.firebaseapp.com",
-            projectId: "a-frame-viline-vodice-71975",
-            storageBucket: "a-frame-viline-vodice-71975.firebasestorage.app",
-            messagingSenderId: "487511010862",
-            appId: "1:487511010862:web:c3c4b9abfa3095f826b9bf",
-            measurementId: "G-LLEG9FMNM5"
+      const app = firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore(app);
+
+      // EmailJS initialization
+      emailjs.init("eAYJ4MjHME7vBYIe3");
+
+      // Load reservations from Firestore
+      function loadReservations() {
+        const reservationsRef = db.collection("reservations");
+        reservationsRef.get().then((querySnapshot) => {
+          const reservationList = document.getElementById('reservation-list');
+          reservationList.innerHTML = ''; // Clear the list before adding new items
+          querySnapshot.forEach((doc) => {
+            const data = doc.data();
+            const reservationElement = document.createElement('li');
+            reservationElement.innerHTML = `
+              <p><strong>Name:</strong> ${data.name}</p>
+              <p><strong>Email:</strong> ${data.email}</p>
+              <p><strong>Dates:</strong> ${data.dates}</p>
+              <button onclick="approveReservation('${doc.id}', '${data.email}')">Approve</button>
+              <button onclick="rejectReservation('${doc.id}', '${data.email}')">Reject</button>
+            `;
+            reservationList.appendChild(reservationElement);
+          });
+        }).catch((error) => {
+          console.error("Error getting reservations: ", error);
+        });
+      }
+
+      // Approve reservation
+      function approveReservation(reservationId, email) {
+        db.collection("reservations").doc(reservationId).update({
+          status: "approved"
+        }).then(() => {
+          sendEmail(email, "approved");
+          loadReservations(); // Reload the list after approval
+        }).catch((error) => {
+          console.error("Error approving reservation: ", error);
+        });
+      }
+
+      // Reject reservation
+      function rejectReservation(reservationId, email) {
+        db.collection("reservations").doc(reservationId).update({
+          status: "rejected"
+        }).then(() => {
+          sendEmail(email, "rejected");
+          loadReservations(); // Reload the list after rejection
+        }).catch((error) => {
+          console.error("Error rejecting reservation: ", error);
+        });
+      }
+
+      // Send email to user via EmailJS
+      function sendEmail(email, status) {
+        const templateParams = {
+          to_email: email,
+          status: status
         };
+        const templateId = status === "approved" ? "template_5pt9ulh" : "template_fnzlyi4";
+        emailjs.send("service_dcq3bfr", templateId, templateParams)
+          .then(response => {
+            console.log('Email sent successfully', response);
+          }, error => {
+            console.log('Error sending email', error);
+          });
+      }
 
-        // Inicijalizacija Firebase-a
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        // Funkcija za učitavanje rezervacija
-        async function loadReservations() {
-            const reservationsRef = collection(db, "reservations");
-            const snapshot = await getDocs(reservationsRef);
-            const reservationsList = document.getElementById('reservationsList');
-            snapshot.forEach(doc => {
-                const reservation = doc.data();
-                const reservationElement = document.createElement('div');
-                reservationElement.innerHTML = `
-                    <p>Ime: ${reservation.name}</p>
-                    <p>Email: ${reservation.email}</p>
-                    <p>Datum: ${reservation.date}</p>
-                    <button onclick="approveReservation('${doc.id}')">Odobri</button>
-                    <button onclick="rejectReservation('${doc.id}')">Odbij</button>
-                `;
-                reservationsList.appendChild(reservationElement);
-            });
-        }
-
-        // Funkcija za odobravanje rezervacije
-        async function approveReservation(reservationId) {
-            const reservationRef = doc(db, "reservations", reservationId);
-            await updateDoc(reservationRef, {
-                status: "approved"
-            });
-            sendEmail(reservationId, "approved");
-        }
-
-        // Funkcija za odbijanje rezervacije
-        async function rejectReservation(reservationId) {
-            const reservationRef = doc(db, "reservations", reservationId);
-            await updateDoc(reservationRef, {
-                status: "rejected"
-            });
-            sendEmail(reservationId, "rejected");
-        }
-
-        // Funkcija za slanje email-a putem EmailJS
-        function sendEmail(reservationId, status) {
-            const templateParams = {
-                reservationId: reservationId,
-                status: status
-            };
-
-            emailjs.send('service_dcq3bfr', status === 'approved' ? 'template_5pt9ulh' : 'template_fnzlyi4', templateParams)
-                .then(function(response) {
-                    console.log('Success', response);
-                }, function(error) {
-                    console.log('Failed', error);
-                });
-        }
-
-        // Inicijalizacija EmailJS
-        import emailjs from 'https://cdn.emailjs.com/dist/email.min.js';
-        emailjs.init('eAYJ4MjHME7vBYIe3');
+      // Load reservations when the page loads
+      window.onload = function() {
+        loadReservations();
+      }
     </script>
 </head>
 <body>
-
-    <h1>Admin Panel - Rezervacije</h1>
-    
-    <!-- Lista rezervacija -->
-    <div id="reservationsList">
-        <!-- Rezervacije će biti dinamički dodane ovde -->
-    </div>
-
-    <script>
-        // Učitaj rezervacije kada stranica bude učitana
-        window.onload = loadReservations;
-    </script>
-
+    <h1>Admin Panel</h1>
+    <h2>Reservations</h2>
+    <ul id="reservation-list"></ul>
 </body>
 </html>
