@@ -3,102 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel</title>
-    <!-- Firebase SDK (bez modula) -->
-    <script src="https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js"></script>
-    <!-- EmailJS SDK -->
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <script>
-      // Inicijalizacija Firebase-a
-      const firebaseConfig = {
-        apiKey: "AIzaSyBhclJjGZoBFxOY_Hhr1JtyoJQKatISMAM",
-        authDomain: "a-frame-viline-vodice-71975.firebaseapp.com",
-        projectId: "a-frame-viline-vodice-71975",
-        storageBucket: "a-frame-viline-vodice-71975.firebasestorage.app",
-        messagingSenderId: "487511010862",
-        appId: "1:487511010862:web:c3c4b9abfa3095f826b9bf",
-        measurementId: "G-LLEG9FMNM5"
-      };
-
-      // Inicijalizacija Firebase aplikacije
-      const app = firebase.initializeApp(firebaseConfig);
-      const db = firebase.firestore(app);
-
-      // Inicijalizacija EmailJS
-      emailjs.init("eAYJ4MjHME7vBYIe3");
-
-      // Funkcija za učitavanje rezervacija
-      function loadReservations() {
-        const reservationsRef = db.collection("reservations");
-        reservationsRef.get().then((querySnapshot) => {
-          const reservationList = document.getElementById('reservation-list');
-          reservationList.innerHTML = ''; // Clear the list before adding new items
-          querySnapshot.forEach((doc) => {
-            const data = doc.data();
-            const reservationElement = document.createElement('li');
-            reservationElement.innerHTML = `
-              <p><strong>Name:</strong> ${data.name}</p>
-              <p><strong>Email:</strong> ${data.email}</p>
-              <p><strong>Dates:</strong> ${data.dates}</p>
-              <button onclick="approveReservation('${doc.id}', '${data.email}')">Approve</button>
-              <button onclick="rejectReservation('${doc.id}', '${data.email}')">Reject</button>
-            `;
-            reservationList.appendChild(reservationElement);
-          });
-        }).catch((error) => {
-          console.error("Error getting reservations: ", error);
-        });
-      }
-
-      // Funkcija za odobravanje rezervacije
-      function approveReservation(reservationId, email) {
-        db.collection("reservations").doc(reservationId).update({
-          status: "approved"
-        }).then(() => {
-          sendEmail(email, "approved");
-          loadReservations(); // Reload the list after approval
-        }).catch((error) => {
-          console.error("Error approving reservation: ", error);
-        });
-      }
-
-      // Funkcija za odbijanje rezervacije
-      function rejectReservation(reservationId, email) {
-        db.collection("reservations").doc(reservationId).update({
-          status: "rejected"
-        }).then(() => {
-          sendEmail(email, "rejected");
-          loadReservations(); // Reload the list after rejection
-        }).catch((error) => {
-          console.error("Error rejecting reservation: ", error);
-        });
-      }
-
-      // Funkcija za slanje email-a putem EmailJS
-      function sendEmail(email, status) {
-        const templateParams = {
-          to_email: email,
-          status: status
-        };
-        const templateId = status === "approved" ? "template_5pt9ulh" : "template_fnzlyi4";
-        emailjs.send("service_dcq3bfr", templateId, templateParams)
-          .then(response => {
-            console.log('Email sent successfully', response);
-          }, error => {
-            console.log('Error sending email', error);
-          });
-      }
-
-      // Učitavanje rezervacija pri učitavanju stranice
-      window.onload = function() {
-        loadReservations();
-      }
+    <title>EmailJS Example</title>
+    <script type="module">
+        // Import EmailJS
+        import emailjs from "https://cdn.emailjs.com/dist/email.min.js";
+        // Inicijalizacija sa tvojim Public Key
+        emailjs.init("eAYJ4MjHME7vBYIe3");  // Tvoj public key
     </script>
 </head>
 <body>
-    <h1>Admin Panel</h1>
-    <h2>Reservations</h2>
-    <ul id="reservation-list"></ul>
+    <h2>Contact Form</h2>
+    <form id="contact-form">
+        <input type="text" id="user_name" placeholder="Your Name" required />
+        <input type="email" id="user_email" placeholder="Your Email" required />
+        <textarea id="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+    </form>
+
+    <script>
+        const form = document.getElementById('contact-form');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Prikupljanje podataka iz forme
+            const templateParams = {
+                user_name: document.getElementById('user_name').value,
+                user_email: document.getElementById('user_email').value,
+                message: document.getElementById('message').value
+            };
+
+            // Slanje emaila putem EmailJS
+            emailjs.send("service_dcq3bfr", "template_5pt9ulh", templateParams)
+                .then(function(response) {
+                    alert("Message sent successfully!");
+                    console.log(response);
+                }, function(error) {
+                    alert("Failed to send message. Please try again.");
+                    console.log(error);
+                });
+        });
+    </script>
 </body>
 </html>
