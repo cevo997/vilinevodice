@@ -1,318 +1,394 @@
-/* General styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Reset za širinu i box model */
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    padding-top: 80px;
+    flex-grow: 1;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-h1, h2, h3 {
-  font-family: 'Georgia', serif;
-  color: #333;
-}
-
-/* Header styles */
 .site-header {
-  background-color: #2a2a2a;
-  color: #fff;
-  padding: 20px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
 }
 
-.site-header .logo a img {
-  height: 50px;
+.site-header .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 2rem;
+}
+
+.logo img {
+    height: 50px;
 }
 
 .site-nav ul {
-  list-style-type: none;
-  display: flex;
-  justify-content: center;
-}
-
-.site-nav li {
-  margin: 0 15px;
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
 }
 
 .site-nav a {
-  color: #fff;
-  font-size: 16px;
-  text-transform: uppercase;
-  padding: 10px 15px;
-  transition: background-color 0.3s ease;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s ease;
 }
 
 .site-nav a:hover {
-  background-color: #e67e22;
+    color: #c48d1d;
 }
 
-/* Navigation menu toggle for mobile */
 .menu-toggle {
-  display: none;
-}
-
-@media (max-width: 768px) {
-  .site-nav {
     display: none;
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .menu-toggle {
-    display: block;
-    font-size: 30px;
-    cursor: pointer;
+    font-size: 2rem;
     background: none;
     border: none;
-    color: #fff;
-  }
+    cursor: pointer;
+    color: #333;
+}
 
-  .site-nav.active {
+.hero {
+    position: relative;
+    height: 100vh;
     display: flex;
-  }
-
-  .site-nav li {
-    margin: 10px 0;
-  }
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
 }
 
-/* Main content area */
-main {
-  padding-top: 80px; /* Add space below the header */
-  padding: 30px;
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
 }
 
-/* Section styles */
-.section {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 30px;
-  padding: 20px;
+.video-background iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 56.25vw;
+    max-height: 100vh;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
 }
 
-.section h1 {
-  font-size: 24px;
-  margin-bottom: 20px;
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: white;
 }
 
-.section p {
-  font-size: 16px;
-  margin-bottom: 20px;
+.hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #c48d1d;
 }
 
-/* Form styles */
-.form-container {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input[type="date"] {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  width: 100%;
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
 }
 
 button {
-  background-color: #e67e22;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
+    background: #c48d1d;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+    cursor: pointer;
 }
 
 button:hover {
-  background-color: #d35400;
+    background: #fff;
 }
 
-/* Footer styles */
 .footer {
-  background-color: #2a2a2a;
-  color: #fff;
-  padding: 20px;
-  text-align: center;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 5px 0;
+    margin-top: auto;
 }
 
 .footer-icons {
-  margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .footer-icons a {
-  color: #fff;
-  margin: 0 10px;
-  font-size: 20px;
+    display: inline-block;
+    margin: 0 10px;
+    color: #c48d1d;
+    font-size: 25px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer p {
+    margin-top: 10px;
+    font-size: 14px;
 }
 
 .footer-icons a:hover {
-  color: #e67e22;
+    color: #fff;
 }
 
-footer p {
-  font-size: 14px;
-  margin-top: 10px;
-}
-
-/* Special section styles */
-.special-section {
-  background-color: #e67e22;
-  color: #fff;
-  padding: 30px;
-  margin-top: 40px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.special-section h2 {
-  font-size: 28px;
-  margin-bottom: 15px;
-}
-
-.special-section p {
-  font-size: 16px;
-  line-height: 1.6;
-}
-
-/* Contact Form Styles */
 .contact-form {
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    margin: 2rem auto;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
-.contact-form h2 {
-  font-size: 28px;
-  margin-bottom: 20px;
+.contact-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: bold;
+    text-align: left;
 }
 
-.contact-form .form-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.contact-form input[type="text"], .contact-form input[type="email"], .contact-form input[type="tel"], .contact-form textarea {
-  padding: 12px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  width: 100%;
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    max-width: 400px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
 }
 
 .contact-form button {
-  background-color: #e67e22;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+    width: 100%;
+    max-width: 400px;
+    padding: 1rem;
+    background: #c48d1d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .contact-form button:hover {
-  background-color: #d35400;
+    background: #a17316;
 }
 
-/* Reservation Form Styles */
+.section h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.section p {
+    font-size: 1.2rem;
+    color: #666;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+    .site-nav {
+        position: absolute;
+        top: 70px;
+        right: 2rem;
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        padding: 1rem;
+        display: none;
+        flex-direction: column;
+        gap: 1rem;
+        z-index: 999;
+    }
+
+    .site-nav.active {
+        display: flex;
+    }
+
+    .site-nav ul {
+        flex-direction: column;
+        gap: 1rem;
+        margin: 0;
+        padding: 0;
+    }
+
+    .site-nav li {
+        list-style: none;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .btn-primary {
+        padding: 0.5rem 1.5rem;
+    }
+
+    .contact-form {
+        padding: 1.5rem;
+    }
+
+    .contact-form button {
+        font-size: 0.9rem;
+    }
+
+    .section h2 {
+        font-size: 2rem;
+    }
+
+    .section p {
+        font-size: 1rem;
+    }
+
+    .footer-icons a {
+        margin: 0 10px;
+        font-size: 25px;
+    }
+}
+
+.rezervacija-page .section {
+    width: 100%;
+    max-width: 600px;
+    margin: 2rem auto;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.rezervacija-page .section h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem;
+    margin-top: 0;
+}
+
+.rezervacija-page .section p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
 .reservation-form {
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.reservation-form h2 {
-  font-size: 28px;
-  margin-bottom: 20px;
+.reservation-form label {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
 }
 
-.reservation-form .form-container {
-  display: flex;
-  flex-direction: column;
+.reservation-form input {
+    width: 100%;
+    max-width: 400px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
 }
 
-.reservation-form input[type="text"], .reservation-form input[type="email"], .reservation-form input[type="date"], .reservation-form input[type="number"] {
-  padding: 12px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  width: 100%;
+.reservation-form input:focus {
+    border-color: #c48d1d;
+    background-color: #fff;
+    box-shadow: 0 0 8px rgba(0, 102, 204, 0.2);
+    outline: none;
 }
 
 .reservation-form button {
-  background-color: #e67e22;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+    width: 100%;
+    max-width: 400px;
+    padding: 1rem;
+    background: #c48d1d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .reservation-form button:hover {
-  background-color: #d35400;
+    background: #a17316;
 }
 
-/* About Us Section Styles */
-.about-us-section {
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+@media (max-width: 768px) {
+    .rezervacija-page .section {
+        padding: 1.5rem;
+        margin: 5rem 1rem 2rem;
+    }
 
-.about-us-section h2 {
-  font-size: 28px;
-  margin-bottom: 20px;
-}
+    .rezervacija-page .section h1 {
+        font-size: 2rem;
+    }
 
-.about-us-section p {
-  font-size: 16px;
-  line-height: 1.6;
-}
+    .rezervacija-page .section p {
+        font-size: 1rem;
+    }
 
-.about-us-section .team-members {
-  display: flex;
-  justify-content: space-between;
-}
+    .reservation-form input {
+        padding: 0.8rem;
+    }
 
-.about-us-section .team-member {
-  background-color: #e67e22;
-  color: white;
-  padding: 20px;
-  border-radius: 8px;
-  text-align: center;
-  width: 30%;
-}
-
-.about-us-section .team-member img {
-  border-radius: 50%;
-  width: 80px;
-  height: 80px;
-  margin-bottom: 15px;
-}
-
-.about-us-section .team-member h3 {
-  font-size: 20px;
-}
-
-.about-us-section .team-member p {
-  font-size: 14px;
+    .reservation-form button {
+        font-size: 0.9rem;
+    }
 }
