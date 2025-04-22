@@ -12,6 +12,18 @@
 <body>
   <h1>Admin Panel - Rezervacije</h1>
   <div id="rezervacije"></div>
+<script>
+    // Jednostavna lozinka — možeš promeniti po želji
+    const sifra = "Akademija1!";
+
+    // Traži unos od korisnika
+    let unos = prompt("Unesite šifru za pristup:");
+
+    if (unos !== sifra) {
+        alert("Pogrešna šifra!");
+        window.location.href = "/"; // Vrati korisnika na početnu stranicu
+    }
+</script>
 
   <script>
     // Firebase config
