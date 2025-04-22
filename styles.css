@@ -40,6 +40,11 @@ body {
 .logo img {
     height: 50px;
 }
+.site-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .site-nav ul {
     list-style: none;
